@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <libconfig.hh>
 
-/* простая программа игры в крестики-нолики */
+/* ГЇГ°Г®Г±ГІГ Гї ГЇГ°Г®ГЈГ°Г Г¬Г¬Г  ГЁГЈГ°Г» Гў ГЄГ°ГҐГ±ГІГЁГЄГЁ-Г­Г®Г«ГЁГЄГЁ */
 #define SPACE ' '
-char matrix[3][3] = { /* матрица для крестиков-ноликов */
+char matrix[3][3] = { /* Г¬Г ГІГ°ГЁГ¶Г  Г¤Г«Гї ГЄГ°ГҐГ±ГІГЁГЄГ®Гў-Г­Г®Г«ГЁГЄГ®Гў */
 {SPACE, SPACE, SPACE},
 {SPACE, SPACE, SPACE},
 {SPACE, SPACE, SPACE}
@@ -19,24 +20,24 @@ printf("This is the game of Tic-Tac-Toe.\n");
 printf("You will be playing against the computer.\n");
 done = SPACE;
 do {
-disp_matrix(); /* вывод игровой доски */
-get_player_move(); /* ходит игрок */
-done = check(); /* проверка на победу */
-if (done!=SPACE) break; /* победитель */
-get_computer_move(); /* ходит компьютер */
-done=check(); /* проверка на победу */
+disp_matrix(); /* ГўГ»ГўГ®Г¤ ГЁГЈГ°Г®ГўГ®Г© Г¤Г®Г±ГЄГЁ */
+get_player_move(); /* ГµГ®Г¤ГЁГІ ГЁГЈГ°Г®ГЄ */
+done = check(); /* ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЎГҐГ¤Гі */
+if (done!=SPACE) break; /* ГЇГ®ГЎГҐГ¤ГЁГІГҐГ«Гј */
+get_computer_move(); /* ГµГ®Г¤ГЁГІ ГЄГ®Г¬ГЇГјГѕГІГҐГ° */
+done=check(); /* ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЎГҐГ¤Гі */
 } while(done==SPACE);
 if(done=='X') printf("You won!\n");
 else printf("I won!!!!\n");
-disp_matrix(); // отображение результирующего положения 
+disp_matrix(); // Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г°ГҐГ§ГіГ«ГјГІГЁГ°ГіГѕГ№ГҐГЈГ® ГЇГ®Г«Г®Г¦ГҐГ­ГЁГї 
 system("pause");
 return 0;
 }
 
-/* ввод хода игрока */
+/* ГўГўГ®Г¤ ГµГ®Г¤Г  ГЁГЈГ°Г®ГЄГ  */
 void get_player_move(void)
 {
-//int x, у;
+//int x, Гі;
 printf("Enter coordinates for your X.\n");
 printf("Row? ");
 scanf ("%d", &x);
@@ -51,7 +52,7 @@ get_player_move();
 else matrix[x][y]='X';
 }
 
-/* ход компьютера */
+/* ГµГ®Г¤ ГЄГ®Г¬ГЇГјГѕГІГҐГ°Г  */
 void get_computer_move(void)
 {
 register int t;
@@ -66,7 +67,7 @@ exit(0); /* game over */
 else *p = 'O';
 }
 
-/* отображение игровой доски */
+/* Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЁГЈГ°Г®ГўГ®Г© Г¤Г®Г±ГЄГЁ */
 void disp_matrix(void)
 {
 int t;
@@ -78,21 +79,21 @@ if(t!=2) printf("\n-|-|-\n");
 printf("\n");
 }
 
-/* проверка на победу */
+/* ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®ГЎГҐГ¤Гі */
 char check(void)
 {
 int t;
 char *p;
-for(t=0; t<3; t++) { /* проверка строк */
+for(t=0; t<3; t++) { /* ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГІГ°Г®ГЄ */
 p = &matrix[t] [0];
 if (*p==* (p+1) && * (p+1)==*(p+2)) return *p;
 }
-for(t=0; t<3; t++) { /* проверка столбцов */
+for(t=0; t<3; t++) { /* ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГІГ®Г«ГЎГ¶Г®Гў */
 p = &matrix[0][t];
 if(*p==*(p+3) && *(p+3)==*(p+6)) return *p;
 }
 
-/* проверка диагоналей */
+/* ГЇГ°Г®ГўГҐГ°ГЄГ  Г¤ГЁГ ГЈГ®Г­Г Г«ГҐГ© */
 if(matrix[0] [0]==matrix [1] [1] && matrix[1] [1]==matrix [2] [2] )
 return matrix[0][0];
 if(matrix[0][2]==matrix[1][1] && matrix[1][1]==matrix[2] [0])
