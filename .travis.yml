@@ -1,0 +1,9 @@
+language: c++
+
+c++:
+ 
+ - "10"
+  
+
+script: c++ Part2/main.cpp
+ 
