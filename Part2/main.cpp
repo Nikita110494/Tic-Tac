@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <libconfig.hh>
 
-/* ïðîñòàÿ ïðîãðàììà èãðû â êðåñòèêè-íîëèêè */
+
+
 #define SPACE ' '
-char matrix[3][3] = { /* ìàòðèöà äëÿ êðåñòèêîâ-íîëèêîâ */
+char matrix[3][3] = { /*  матрица для крестиков-ноликов */
 {SPACE, SPACE, SPACE},
 {SPACE, SPACE, SPACE},
 {SPACE, SPACE, SPACE}
@@ -20,24 +20,24 @@ printf("This is the game of Tic-Tac-Toe.\n");
 printf("You will be playing against the computer.\n");
 done = SPACE;
 do {
-disp_matrix(); /* âûâîä èãðîâîé äîñêè */
-get_player_move(); /* õîäèò èãðîê */
-done = check(); /* ïðîâåðêà íà ïîáåäó */
-if (done!=SPACE) break; /* ïîáåäèòåëü */
-get_computer_move(); /* õîäèò êîìïüþòåð */
-done=check(); /* ïðîâåðêà íà ïîáåäó */
+disp_matrix(); /* вывод игровой доски */
+get_player_move(); /* ходит пользователь */
+done = check(); /* проверка на победу */
+if (done!=SPACE) break; /* победитель */
+get_computer_move(); /* ходит программа */
+done=check(); /* проверка на победу */
 } while(done==SPACE);
 if(done=='X') printf("You won!\n");
 else printf("I won!!!!\n");
-disp_matrix(); // îòîáðàæåíèå ðåçóëüòèðóþùåãî ïîëîæåíèÿ 
+disp_matrix(); // отображение результирующего положения  
 system("pause");
 return 0;
 }
 
-/* ââîä õîäà èãðîêà */
+/* ввод хода пользователя */
 void get_player_move(void)
 {
-//int x, ó;
+//int x, у;
 printf("Enter coordinates for your X.\n");
 printf("Row? ");
 scanf ("%d", &x);
@@ -52,7 +52,7 @@ get_player_move();
 else matrix[x][y]='X';
 }
 
-/* õîä êîìïüþòåðà */
+/* ход программы */
 void get_computer_move(void)
 {
 register int t;
@@ -67,7 +67,7 @@ exit(0); /* game over */
 else *p = 'O';
 }
 
-/* îòîáðàæåíèå èãðîâîé äîñêè */
+/* отображение игровой доски */
 void disp_matrix(void)
 {
 int t;
@@ -79,21 +79,21 @@ if(t!=2) printf("\n-|-|-\n");
 printf("\n");
 }
 
-/* ïðîâåðêà íà ïîáåäó */
+/* проверка на победу */
 char check(void)
 {
 int t;
 char *p;
-for(t=0; t<3; t++) { /* ïðîâåðêà ñòðîê */
+for(t=0; t<3; t++) { /* проверка строк */
 p = &matrix[t] [0];
 if (*p==* (p+1) && * (p+1)==*(p+2)) return *p;
 }
-for(t=0; t<3; t++) { /* ïðîâåðêà ñòîëáöîâ */
+for(t=0; t<3; t++) { /* проверка столбцов  */
 p = &matrix[0][t];
 if(*p==*(p+3) && *(p+3)==*(p+6)) return *p;
 }
 
-/* ïðîâåðêà äèàãîíàëåé */
+/*  проверка диагоналей */
 if(matrix[0] [0]==matrix [1] [1] && matrix[1] [1]==matrix [2] [2] )
 return matrix[0][0];
 if(matrix[0][2]==matrix[1][1] && matrix[1][1]==matrix[2] [0])
