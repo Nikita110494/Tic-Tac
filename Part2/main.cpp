@@ -5,9 +5,9 @@
 
 #define SPACE ' '
 char matrix[3][3] = { /*  матрица для крестиков-ноликов */
-{SPACE, SPACE, SPACE},
-{SPACE, SPACE, SPACE},
-{SPACE, SPACE, SPACE}
+{0, 0, 0},
+{0, 0, 0},
+{0, 0, 0}
 } ;
 void get_computer_move(void), get_player_move(void);
 void disp_matrix(void);
