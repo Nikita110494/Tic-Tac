@@ -11,7 +11,7 @@ char matrix[3][3] = { /*  матрица для крестиков-нолико�
 } ;
 void get_computer_move(void), get_player_move(void);
 void disp_matrix(void);
-char check (void);
+char check ();
 int x,y;
 int main()
 {
@@ -80,7 +80,7 @@ printf("\n");
 }
 
 /* проверка на победу */
-char check(void)
+char check()
 {
 int t;
 char *p;
