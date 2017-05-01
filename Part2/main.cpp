@@ -80,6 +80,10 @@ printf("\n");
 }
 
 /* проверка на победу */
+/// check the win
+/// \param[in] t
+/// \param[in] *p
+/// \return *p
 char check()
 {
 int t;
